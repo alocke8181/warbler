@@ -310,7 +310,7 @@ def homepage():
     """Show homepage:
 
     - anon users: no messages
-    - logged in: 100 most recent messages of followed_users
+    - logged in: 100 most recent messages of followed_users and themselves
     """
     valid_ids = [eachUser.id for eachUser in g.user.following]
     valid_ids.append(g.user.id)
