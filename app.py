@@ -312,10 +312,12 @@ def homepage():
     - anon users: no messages
     - logged in: 100 most recent messages of followed_users
     """
-
+    valid_ids = [eachUser.id for eachUser in g.user.following]
+    valid_ids.append(g.user.id)
     if g.user:
         messages = (Message
                     .query
+                    .filter(Message.user_id.in_(valid_ids))
                     .order_by(Message.timestamp.desc())
                     .limit(100)
                     .all())
